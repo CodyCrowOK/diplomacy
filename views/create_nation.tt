@@ -1,0 +1,181 @@
+<form method="POST" action="/create_nation" name="form">
+  <table border="0" cellspacing="0">
+    <tr>
+      <td height="21" valign="middle"><p style="margin-left: 15px">Name:</big></td>
+      <td height="21" valign="middle">The</td>
+      <td height="21" valign="middle"><select name="type" size="1">
+	<option value="100">Republic</option>
+	<option value="101">People's Republic</option>
+	<option value="102">Democratic Republic</option>
+	<option value="103">United States</option>
+	<option value="104">United Socialist States</option>
+	<option value="105">Democratic States</option>
+	<option value="106">Allied States</option>
+	<option value="107">Kingdom</option>
+	<option value="108">Queendom</option>
+	<option value="109">Fiefdom</option>
+	<option value="110">Constitutional Monarchy</option>
+	<option value="111">Dominion</option>
+	<option value="112">Empire</option>
+	<option value="113">Holy Empire</option>
+	<option value="114">Holy Republic</option>
+	<option value="115">Most Serene Republic</option>
+	<option value="116">Theocracy</option>
+	<option value="117">Commonwealth</option>
+	<option value="118">Dictatorship</option>
+	<option value="119">Principality</option>
+	<option value="120">Protectorate</option>
+	<option value="121">Sultanate</option>
+	<option value="122">Emirate</option>
+	<option value="123">Colony</option>
+	<option value="124">Grand Duchy</option>
+	<option value="125">Federation</option>
+	<option value="126">Confederacy</option>
+	<option value="127">Free Land</option>
+	<option value="128">Community</option>
+	<option value="129">Disputed Territories</option>
+	<option value="130">Jingoistic States</option>
+	<option value="131">Armed Republic</option>
+	<option value="132">Nomadic Peoples</option>
+	<option value="133">Oppressed Peoples</option>
+	<option value="134">Borderlands</option>
+	<option value="135">Rogue Nation</option>
+	<option value="136">Incorporated States</option>
+
+      </select>&nbsp; of &nbsp;<input name="name" size="22" maxlength="22" value=""></td>
+    </tr>
+    <tr>
+      <td height="21" valign="middle"><p style="margin-left: 15px">National Flag:</big></td>
+      <td height="21" valign="middle"></td>
+      <td height="21" valign="middle">
+<select id="flag" name="flag" size="1">
+<option value="Albania.png">Albania</option>
+<option value="Algeria.png">Algeria</option>
+<option value="Argentina.png">Argentina</option>
+<option value="Australia.png">Australia</option>
+<option value="Cameroon.png">Cameroon</option>
+<option value="Canada.png">Canada</option>
+<option value="Chile.png">Chile</option>
+<option value="Denmark.png">Denmark</option>
+<option value="Egypt.png">Egypt</option>
+<option value="Finland.png">Finland</option>
+<option value="France.png">France</option>
+<option value="Germany.png">Germany</option>
+<option value="Ghana.png">Ghana</option>
+<option value="Greece.png">Greece</option>
+<option value="Iceland.png">Iceland</option>
+<option value="Ireland.png">Ireland</option>
+<option value="Israel.png">Israel</option>
+<option value="Jamaica.png">Jamaica</option>
+<option value="Japan.png">Japan</option>
+<option value="Lebanon.png">Lebanon</option>
+<option value="Macedonia.png">Macedonia</option>
+<option value="Mauritania.png">Mauritania</option>
+<option value="Montenegro.png">Montenegro</option>
+<option value="Morocco.png">Morocco</option>
+<option value="Nigeria.png">Nigeria</option>
+<option value="Norway.png">Norway</option>
+<option value="Pakistan.png">Pakistan</option>
+<option value="Suriname.png">Suriname</option>
+<option value="Switzerland.png">Switzerland</option>
+<option value="PRC.png">The People's Republic of China</option>
+<option value="USSR.png">The Soviet Union</option>
+<option value="UK.png">The United Kingdom</option>
+<option value="USA.png">The United States</option>
+<option value="Turkey.png">Turkey</option>
+<option value="Vietnam.png">Vietnam</option>
+</select>
+</td>
+    </tr>
+    <tr>
+      <td height="21" valign="middle"><p style="margin-left: 15px">Government Style:</big></td>
+      <td height="21" valign="middle">&nbsp;</td>
+      <td height="21" valign="middle"><select name="style" size="1">
+<option selected value="50.50.50">Sensible</option>
+<option value="25.75.50">Liberal</option>
+<option value="75.25.30">Conservative</option>
+<option value="75.75.25">Compassionate</option>
+<option value="75.75.75">Oppressive</option>
+<option value="80.80.90">Corrupt</option>
+<option value="20.20.20">Libertarian</option>
+<option value="0.0.0">Anarchic</option>
+<option value="100.100.100">Evil</option>
+<option value="-90.-90.-90">Psychotic</option>
+</select></td>
+    </tr>
+    <tr>
+      <td height="21" valign="middle"><p style="margin-left: 15px">National Currency:</big></td>
+      <td height="21" valign="middle">The</td>
+      <td height="21" valign="middle"><input name="currency" size="22" maxlength="22" value=""></td>
+    </tr>
+    <tr>
+      <td height="21" valign="middle"><p style="margin-left: 15px">National Animal:</big></td>
+      <td height="21" valign="middle">The</td>
+      <td height="21" valign="middle"><input name="animal" size="22" maxlength="22" value=""></td>
+    </tr>
+    <tr>
+      <td height="21" valign="middle"><p style="margin-left: 15px">National Motto:</big></td>
+      <td height="21" valign="middle">&nbsp;</td>
+      <td height="21" valign="middle"><input name="slogan" size="60" maxlength="55" value=""></td>
+    </tr>
+    <tr>
+      <td height="25" valign="top"><p style="margin-left: 15px">E-mail address:</big></td>
+      <td height="21" valign="middle">&nbsp;</td>
+      <td height="25"><input name="email" size="30" value=""> [optional]</td>
+    </tr>
+    <tr>
+      <td><p style="margin-left: 15px">Password:</big></td>
+      <td height="21" valign="middle">&nbsp;</td>
+      <td><input type="password" name="password" size="18" maxlength="15" value="">
+    </tr>
+    <tr>
+      <td><p style="margin-left: 15px">Confirm password:</big></td>
+      <td height="21" valign="middle">&nbsp;</td>
+      <td><input type="password" name="confirm_password" size="18" maxlength="15" value="">
+    </tr>
+    <tr><td><img style="margin-left: 15px" src="/images/hr.gif" /></td></tr>
+    </table>
+    <h3 style="margin-left:15px">Ideology Analysis</h3>
+<p style="margin-left:15px">Q1. A nation has the responsibility to ensure a good quality of life for the worst off.
+<table style="float:right">
+<tr class="labels">
+<label for="q0sd">Strongly Disagree</label><input type="radio" name="Q0" value="SD" id="q0sd">
+<label for="q0d">Disagree</label><input type="radio" name="Q0" value="D" id="q0d">
+<label for="q0a">Agree</label><input type="radio" name="Q0" value="A" id="q0a">
+<label for="q0sa">Strongly Agree</label><input type="radio" name="Q0" value="SA" id="q0sa">
+</tr>
+</table></p>
+<p style="margin-left:15px">Q2. Corporations deserve the rights of people.
+<table style="float:right">
+<tr class="labels">
+<label for="q1sd">Strongly Disagree</label><input type="radio" name="Q1" value="SD" id="q1sd">
+<label for="q1d">Disagree</label><input type="radio" name="Q1" value="D" id="q1d">
+<label for="q1a">Agree</label><input type="radio" name="Q1" value="A" id="q1a">
+<label for="q1sa">Strongly Agree</label><input type="radio" name="Q1" value="SA" id="q1sa">
+</tr>
+</table></p>
+<p style="margin-left:15px">Q3. The only immoral actions are those which harm other people.
+<table style="float:right">
+<tr class="labels">
+<label for="q2sd">Strongly Disagree</label><input type="radio" name="Q2" value="SD" id="q2sd">
+<label for="q2d">Disagree</label><input type="radio" name="Q2" value="D" id="q2d">
+<label for="q2a">Agree</label><input type="radio" name="Q2" value="A" id="q2a">
+<label for="q2sa">Strongly Agree</label><input type="radio" name="Q2" value="SA" id="q2sa">
+</tr>
+</table></p>
+<p style="margin-left:15px">Q4. A nation's military might is of immense importance.
+<table style="float:right">
+<tr class="labels">
+<label for="q3sd">Strongly Disagree</label><input type="radio" name="Q3" value="SD" id="q3sd">
+<label for="q3d">Disagree</label><input type="radio" name="Q3" value="D" id="q3d">
+<label for="q3a">Agree</label><input type="radio" name="Q3" value="A" id="q3a">
+<label for="q3sa">Strongly Agree</label><input type="radio" name="Q3" value="SA" id="q3sa">
+</tr>
+</table></p>
+    <table>
+    <p style="margin-left:15px">By clicking the submit button, I affirm that I have read and agree to adide by <a href="/tos" target="_blank">Diplomacy's Terms of Service.</a>
+    <tr>
+       <td><p style="margin-left: 15px"><input type="submit" value="Submit"  name="make_nation"></td>
+    </tr>
+  </table>
+</form>

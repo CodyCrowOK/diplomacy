@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+ <title>Diplomacy · a Browser Game</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <link rel="stylesheet" href="/css/ns.css" type="text/css">
+ <link rel="stylesheet" href="/css/advanced.css" type="text/css" media="all">
+</head>
+<body>
+<div id="panel">
+	<a href=""><img src="/images/mars.jpg" alt="Mars" title="Mars"></a>
+	<div style="text-align:center"><img src="/images/hr.gif"></div>
+	<% logged_out_nav %>
+	<div class="loginbox">
+	<form action="/login" method="post"><input type="hidden" name="logging_in" value="1">
+	<p>NATION<br><input size="12" 
+		name="nation"><br />PASSWORD<br><input size="12" 
+		name="password" type="password"><br />
+        <input type="submit" value="Login" name="submit"></form>
+	</div>
+</div>
+<div id="banner">
+<a href="/"><img src="/images/banner.png" alt="Diplomacy: a Browser Game"></a>
+</div>
+<div id="main" style="padding-top:10px;">
+<% content %>
+</div>
+<div id="foot">
+</div>
+</body>
+</html>

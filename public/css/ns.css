@@ -1,0 +1,275 @@
+body {  margin-left: 0px;
+        margin-top: 0px;
+        font-family: Verdana, Tahoma;
+    	font-size: 10pt;
+	color: black;
+	background-color: white;
+}
+img {
+	border:0;
+}
+
+img.smallflag {
+	border:1px solid;
+	height:26px;
+	width:40px;
+	vertical-align:middle;
+	margin-right: 6px;
+	margin-left: 6px;
+}
+
+img.miniflag {
+    border: 1px solid;
+    height:13px;
+    width:20px;
+    vertical-align:middle;
+    margin-right: 4px;
+    margin-left: 0px;
+}
+
+img.bigflag {
+	border:1px solid;
+	padding:1px;
+	vertical-align:middle;
+	margin-right: 12px;
+}
+
+img.icon {
+	vertical-align:middle;
+	margin-right: 6px;
+}
+
+td {    font-size: 10pt; 
+	font-family: Verdana, Tahoma;
+}
+h1 {    font-size: 3.0em;
+	font-family: Impact,Garamond;
+	font-weight: normal;
+}
+h2 {    font-size: 2.5em;
+        font-family: Garamond;
+        font-weight: normal;
+}
+h3 {	font-size: 12pt;
+	font-family: Verdana, Tahoma;
+	font-weight: bold;
+}
+h4 {	font-size: 1.0em;
+	font-weight: bold;
+}
+h5 {    color: #CC6600;
+}
+h6 {	font-size: 80%;
+}
+
+.smalltext {
+	font-size: 80%;
+}
+
+a:link {
+	COLOR: green; 
+	TEXT-DECORATION: none
+}
+a:visited {
+	COLOR: green;
+	TEXT-DECORATION: none
+}
+a:active {
+	COLOR: #00CC00;
+	TEXT-DECORATION: none
+}
+a:hover {
+	COLOR: #00CC00; 
+	TEXT-DECORATION: underline
+}
+
+.repealed p, .repealed h2 {
+	color:gray;
+	text-decoration: line-through; 
+}
+
+fieldset {
+	margin-left: 1%; 
+	margin-right: 20%; 
+	border: 1px dashed black; 
+	background-color:#F9F9F9; 
+	padding-left: 1em; 
+	padding-right: 1em; 
+	padding-bottom: 1em; 
+	font-size: 80%; 
+	color:#333;
+}
+legend {
+	background-color:#FFF; 
+	border: 1px solid #CCC; 
+	font-weight:bold;
+}
+.modtag, .gametag {
+	color:orange;
+	font-weight:bold;
+}
+.untag {
+	color:blue;
+	font-weight:bold;
+}
+
+.error {
+	color:red;
+	border: dashed 2px #F66;
+	padding:1em;
+	margin:0.5em;
+	margin-right:50%;
+}
+
+.info {
+	color:#343;
+	border: dashed 2px #696;
+	background-color:#F0FFF0;
+        padding:1em;
+        margin:0.5em;
+	margin-right:50%;
+}
+
+#panel {
+	float:left;
+	width:160px;
+	background-color:white;
+}
+
+#banner {
+	margin:0px;
+	padding:0px;
+	background-color:#DADAD2;
+}
+
+#bannerunpic {
+	position:absolute;
+	top:0px;
+	right:0px;
+}
+
+#main {
+	margin-left:160px;
+}
+
+#panel ul {
+	margin:0;
+	padding:0;
+	margin-left:1em;
+}
+
+#panel ul.menu {
+	font-weight:bold;
+	font-size:12px;
+}
+
+#panel ul.submenu {
+	margin-left:1.4em;
+	font-size:11px;
+	font-weight:normal;
+}
+
+#panel li {
+	background:url(/images/bullet.png) no-repeat 0px 0px;	
+	list-style:none;
+	padding-left:10px;
+	}
+
+#panel .menu a {
+	color:black;
+}
+
+#panel a.STANDOUT {
+	color:green;
+}
+
+#panel .loginbox {
+	text-align:center;
+	font-size:7pt;
+	
+}
+
+#panel .threads a {
+    font-family:Arial,sans;
+}
+
+#panel ul.threads {
+}
+
+#panel .threads li {
+    margin-right: 1em;
+    margin-top:.5em;
+    padding-bottom:.5em;
+    border-bottom: 1px dotted gray;
+    font-size:85%;
+    line-height:100%;
+}
+
+input[type="submit"] {
+	color:white;
+	font-weight:bold;
+	background-color:#474;
+}
+
+input[type="submit"]:hover {
+        background-color:green;
+}
+
+input.small {
+	font-size:80%;
+	font-weight:normal;
+}
+
+input.endorse {
+	background-color:#44C;
+	color:white;
+	font-weight:bold;
+}
+input.endorse:hover {
+	background-color:blue;
+}
+
+.widebox {
+    width:100%;
+}
+
+.widebox2 {
+    width:92%;
+    margin-left:4%;
+}
+
+.widebox3 {
+    width:84%;
+    margin-left:8%;
+}
+
+table {
+    margin:0;
+    padding:0;
+}
+
+table.shiny {
+    background-color:#EAEAE2;
+}
+
+table.shiny td {
+    background-color:white;
+}
+
+
+.UN {
+	background-image:url();
+	background-repeat: no-repeat;
+	background-position: 220 60;
+	background-attachment: fixed;
+}
+
+.unbox {
+	border-bottom: 1px dotted gray;
+}
+	
+.newsbox  {
+	border-top: 1px dotted gray;
+	border-bottom: 1px dotted gray;
+}
+

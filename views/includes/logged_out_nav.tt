@@ -1,0 +1,7 @@
+<ul class="menu">
+		<li><a href="<% base_url %>">HOME</a></li>
+		<li><a href="<% base_url %>/create_nation">CREATE A NATION</a></li>
+		<li><a href="<% base_url %>/world">THE WORLD</a></li>
+		<li><a href="<% base_url %>/un">UNITED NATIONS</a></li>
+		<li><a href="<% base_url %>/about">ABOUT</a></li>
+</ul>
