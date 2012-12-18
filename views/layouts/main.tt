@@ -12,7 +12,7 @@
 	<div style="text-align:center"><img src="/images/hr.gif"></div>
 	<% logged_out_nav %>
 	<div class="loginbox">
-	<form action="/login" method="post"><input type="hidden" name="logging_in" value="1">
+	<form action="/login/submit" method="post">
 	<p>NATION<br><input size="12" 
 		name="nation"><br />PASSWORD<br><input size="12" 
 		name="password" type="password"><br />

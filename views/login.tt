@@ -1,0 +1,7 @@
+<div class="loginbox" style="margin-left:auto;margin-right:auto;display:block;text-align:center;">
+    <h2>Login</h2>
+    <form action="/login/submit" method="post">
+    <p>NATION<br><input size="12" name="nation"><br />PASSWORD<br />
+    <input size="12" name="password" type="password"><br />
+    <input type="submit" value="Login" name="submit"></form>
+</div>

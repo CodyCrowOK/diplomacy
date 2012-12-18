@@ -1,0 +1,4 @@
+-----12-17-2012
+properly encrypt passwords in create_nation
+properly process params in create_nation/submit
+make login work
