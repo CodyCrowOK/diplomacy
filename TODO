@@ -1,4 +1,10 @@
 -----12-17-2012
 properly encrypt passwords in create_nation
 properly process params in create_nation/submit
-make login work
+-----12-18-2012
+create issues table in database
+display issues
+create cron or sub to assign issues to each nation
+fix layout sidebar
+fix region cache in &cache_nation
+create _eval_... subs

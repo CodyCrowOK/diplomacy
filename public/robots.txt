@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: 
+Disallow: /login
+Disallow: /create_nation
+Disallow: /issues
+Disallow: /settings
+

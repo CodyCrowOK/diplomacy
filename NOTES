@@ -1,0 +1,13 @@
+Database table `users` is the actual data about each nation.
+Database table `users_cache` is what is visible within the application.
+
+E.g. `users` has 'int economy' while `users_cache` has 'string economy', and
+`users_cache` is only updated if one-half day has gone by since the last update.
+This will keep from having to _eval_economy et al. every time a page is loaded.
+
+Columns in `users_cache` are named the same as their counterparts in `users`
+even when the names no longer make sense. E.g. crime_rate in `users` is a
+smallint value, but crime_rate in `users_cache` is a text (like 'non-existent',
+or 'low, due to a pervasive police force').
+---
+
