@@ -8,3 +8,4 @@ create cron or sub to assign issues to each nation
 fix layout sidebar
 fix region cache in &cache_nation
 create _eval_... subs
+FIX ERROR in cache_nation that is making all of the variables NULL
