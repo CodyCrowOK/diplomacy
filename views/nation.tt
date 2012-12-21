@@ -1,1 +1,21 @@
-<h2><% title %></h2>
+<span class="pretext">UN report on:</span>
+<!--h2 class="nationname">The <% classification %> of <% name %><img src="/images/flags/<% flag %>" alt="National Flag" class="natflag" /></h2-->
+<table class="center"><tr>
+<td><img class="bigflag" src="/images/flags/<% flag %>" alt="National Flag" title="National Flag"></td>
+<td><h2 class="nationname">The <% classification %> of <% name %></h2>
+</td></tr></table>
+<p id="motto">"<% motto %>"</p>
+<table class="shiny center" border="5" cellspacing="10" width="80%">
+    <tr>
+	<td colspan="3" align="center"><strong>Category:</strong> <% category %></td>
+    </tr>
+    <tr>
+	<td width="33%" align="center"><strong>Civil Rights:</strong><br /><% civil_rights %></td>
+	<td width="33%" align="center"><strong>Economy:</strong><br /><% economy %></td>
+	<td width="33%" align="center"><strong>Political Freedoms:</strong><br /><% political_freedoms %></td>
+    </tr>
+</table>
+
+<p class="nationbody center">The <% classification %> of <% name %> is a nation <% trees_rate %>. <% paragraph_prefix %><% population %> million<% paragraph_suffix %></p>
+<p class="nationbody center">Crime is <% crime %>. The <% classification %> of <% name %>'s national animal is the <% animal %>, and its currency is the <% currency %>.</p>
+

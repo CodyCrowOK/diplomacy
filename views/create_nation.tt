@@ -106,17 +106,17 @@
     <tr>
       <td height="21" valign="middle"><p style="margin-left: 15px">National Currency:</big></td>
       <td height="21" valign="middle">The</td>
-      <td height="21" valign="middle"><input name="currency" size="22" maxlength="22" value=""></td>
+      <td height="21" valign="middle"><input name="currency" size="22" maxlength="66" value=""></td>
     </tr>
     <tr>
       <td height="21" valign="middle"><p style="margin-left: 15px">National Animal:</big></td>
       <td height="21" valign="middle">The</td>
-      <td height="21" valign="middle"><input name="animal" size="22" maxlength="22" value=""></td>
+      <td height="21" valign="middle"><input name="animal" size="22" maxlength="66" value=""></td>
     </tr>
     <tr>
       <td height="21" valign="middle"><p style="margin-left: 15px">National Motto:</big></td>
       <td height="21" valign="middle">&nbsp;</td>
-      <td height="21" valign="middle"><input name="slogan" size="60" maxlength="55" value=""></td>
+      <td height="21" valign="middle"><input name="slogan" size="60" maxlength="110" value=""></td>
     </tr>
     <tr>
       <td height="25" valign="top"><p style="margin-left: 15px">E-mail address:</big></td>

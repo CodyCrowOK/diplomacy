@@ -7,17 +7,12 @@ use Dancer::Plugin::Auth::RBAC::Credentials::PostgreSQL;
 use Template;
 use Math::Random::Secure qw(irand);
 use Dancer::Session;
-use strict;
+no strict 'refs';
 
 our $VERSION = '0.1';
 
 get '/' => sub {
-    if ( not session('user_id')) {
         template 'index';
-    }
-    else {
-        template 'nation';
-    }
 };
 
 get '/nation/:nation' => sub {
@@ -27,8 +22,7 @@ get '/nation/:nation' => sub {
     if (defined(database->quick_lookup('users', { name => params->{'nation'} }, 'id' ))) {
         if (defined(database->quick_lookup('users_cache', {
           name => params->{'nation'} }, 'economy' )) && 
-          ((time()) - (database->quick_lookup('users_cache', { name => params->{'nation'} }, 
-          'last_cache' )) > 43200 )) { #check if cache is more than 1/2 day old
+          ((time()) - (database->quick_lookup('users_cache', { name => params->{'nation'} }, 'last_cache' )) > 43200 )) { #check if cache is more than 1/2 day old
 	      my $nation = params->{'nation'};
               cache_nation($nation);
         }
@@ -38,9 +32,27 @@ get '/nation/:nation' => sub {
               cache_nation($nation);
         }
         
+        my $un_data = database->quick_lookup('users_cache', { name => $nation }, 'un_category');
+        my @un_category = split('\|', $un_data);
+        my $population = database->quick_lookup('users_cache', { name => $nation }, 'population');
+        
         template 'nation' => {
-                    title => $nation,
-                    name => $nation,     
+            title => $nation,
+            name => $nation,
+            classification => database->quick_lookup('users_cache', { name => $nation }, 'classification'),
+            flag => database->quick_lookup('users_cache', { name => $nation }, 'flag'),
+            motto => database->quick_lookup('users_cache', { name => $nation }, 'motto'),
+            category => $un_category[0],
+            civil_rights => database->quick_lookup('users_cache', { name => $nation }, 'civil_rights'),
+            political_freedoms => database->quick_lookup('users_cache', { name => $nation }, 'political_freedoms'),
+            economy => database->quick_lookup('users_cache', { name => $nation }, 'economy'),
+            paragraph_prefix => $un_category[1],
+            paragraph_suffix => $un_category[2],
+            trees_rate => database->quick_lookup('users_cache', { name => $nation }, 'trees_rate'),
+            population => $population,
+            crime => database->quick_lookup('users_cache', { name => $nation }, 'cop_rate'),
+            animal => database->quick_lookup('users_cache', { name => $nation }, 'animal'),
+            currency => database->quick_lookup('users_cache', { name => $nation }, 'currency'),
         };
         
     }
@@ -100,7 +112,7 @@ hook before_template => sub {
 };
 
 sub _eval_economy {
-    my $nation = $ARGV[0];
+    my $nation = params->{nation};
     my $econ_score = database->quick_lookup('users', { name => $nation }, 'economy');
     given ($econ_score) {
         when ($_ < 5) { return 'Non-existent'; }
@@ -119,7 +131,7 @@ sub _eval_economy {
 }
 
 sub _eval_political_freedoms {
-    my $nation = $ARGV[0];
+    my $nation = params->{nation};
     my $pol_score = database->quick_lookup('users', { name => $nation }, 'political_freedoms');
     
     given ($pol_score) {
@@ -139,7 +151,7 @@ sub _eval_political_freedoms {
 }
 
 sub _eval_civil_rights {
-    my $nation = $ARGV[0];
+    my $nation = params->{nation};
     my $civil_score = database->quick_lookup('users', { name => $nation }, 'civil_rights');
     
     given ($civil_score) {
@@ -159,7 +171,7 @@ sub _eval_civil_rights {
 }
 
 sub _eval_economic_scale {
-    my $nation = $ARGV[0];
+    my $nation = params->{nation};
     my $econ_scale = database->quick_lookup('users', { name => $nation }, 'economic_scale');
     
     given ($econ_scale) {
@@ -172,7 +184,10 @@ sub _eval_economic_scale {
 }
 
 sub _eval_un_category {
-    my $nation = $ARGV[0];
+package un_category;
+use Dancer::Plugin::Database;
+
+    our $nation = ::params->{nation};
     my %category = (
                 civil_libertarian => {
                     economic_authoritarian => { #[UN Category, "Its yada yada pop. of ", "are ruled with an iron fist yada yada"]
@@ -181,7 +196,7 @@ sub _eval_un_category {
                         political_authoritarian => ["Dictatorship of the Proletariat","Its loyal, hard-working population of "," are ruled with an iron fist by the communist government, which allows its citizens to do whatever they would like, except own property and participate in their government."],
                     },
                     economic_centrist => {
-                        political_libertarian => ["Libertarian Democracy","Its friendly population of "," view any regression of their civil and political rights as sacrilege; economic policy is of little regard."],
+                        political_libertarian => ["Civil Rights Lovefest","Its friendly population of "," view any regression of their civil and political rights as sacrilege; economic policy is of little regard."],
                         political_centrist => ["Radical Centrists","Its confident, socially-minded population of "," hold dear their civil rights above all, with political freedoms taking a backseat to ensuring such rights. Businesses are encouraged, but regulated, with most citizens viewing both left and right-wing politics as intolerable."],
                         political_authoritarian => ["Third Way Autocracy","Its loyal population of "," are ruled by a benevolent autocrat, who keeps tabs on his citizens' every move. People are free to do what they want, as long as they report their actions to the appropriate government agency. Businesses are regulated to keep them from becoming as powerful as the government."],
                     },
@@ -211,12 +226,12 @@ sub _eval_un_category {
                 civil_authoritarian => {
                     economic_authoritarian => {
                         political_libertarian => ["Tyranny of the Majority","Its intelligent population of "," participate in frequent elections, where a slim but stable majority expand their own rights at the expense of minorities, who have no rights by comparison."],
-                        political_centrist => ["Oligarchical Collectivism","Its reserved, careless population of "," have few freedoms, although they do have the ability to vote in elections, which occur infrequently and irregularly, often in obscure locations."],
-                        political_authoritarian => ["Sweatshop Dictatorship","Its hopeless, cynical population of "," are ruled by a fearless dictator, who outlaws all civil, political, and economic rights, except for the right to work harder.  "],
+                        political_centrist => ["Oligarchical Collectivists","Its reserved, careless population of "," have few freedoms, although they do have the ability to vote in elections, which occur infrequently and irregularly, often in obscure locations."],
+                        political_authoritarian => ["Sweatshop Dictatorship","Its hopeless, cynical population of "," are ruled by a fearless dictator, who uses his power to outlaw all civil, political, and economic rights, except for the right to work harder.  "],
                     },
                     economic_centrist => {
                         political_libertarian => ["Theodemocracy","Its god-fearing, reverent population of "," enjoy great political freedoms and voting rights, which they use to elect retired religious officials and enact religious policy. Personal life is heavily controlled, but people have the freedom of free enterprise, to a point."],
-                        political_centrist => ["Theocracy","Its respectful, god-fearing population of "," enjoy some say in their government, which they use to ban almost all personal liberties that do not benefit their religion. Those that live their life quietly and piously are praised, while others tend to disappear."],
+                        political_centrist => ["Theocracy","Its respectful, god-fearing population of "," enjoy some say in their government, which they use to ban almost all personal liberties that are not encouraged by their religion. Those that live their life quietly and piously are praised, while others tend to disappear."],
                         political_authoritarian => ["Human Resources Department State","Its fiercely patriotic population of "," have no individual rights, but are allowed to work hard to produce goods and services for the corrupt and oppressive government. "],
                     },
                     economic_libertarian => {
@@ -228,7 +243,7 @@ sub _eval_un_category {
     );
     
     sub __eval_economic_rights {
-        my $nation = $ARGV[0];
+        my $nation = ::params->{nation};
         my $economic_rights = database->quick_lookup('users', { name => $nation }, 'economic_scale');
         given ($economic_rights) {
             when ($_ <= 33) { return "economic_authoritarian"; }
@@ -238,7 +253,7 @@ sub _eval_un_category {
     }
     
     sub __eval_political_rights {
-        my $nation = $ARGV[0];
+        my $nation = ::params->{nation};
         my $political_rights = database->quick_lookup('users', { name => $nation }, 'political_freedoms');
         given ($political_rights) {
             when ($_ <= 33) { return "political_authoritarian"; }
@@ -248,7 +263,7 @@ sub _eval_un_category {
     }
     
     sub __eval_civil_rights {     
-        my $nation = $ARGV[0];
+        my $nation = ::params->{nation};
         my $civil_rights = database->quick_lookup('users', { name => $nation }, 'civil_rights');
         given ($civil_rights) {
             when ($_ <= 33) { return "civil_authoritarian"; }
@@ -264,7 +279,7 @@ sub _eval_un_category {
 }
 
 sub _eval_cop_rate {
-    my $nation = $ARGV[0];
+    my $nation = params->{nation};
     my $cop_rate = database->quick_lookup('users', { name => $nation }, 'cop_rate');
     
     given ($cop_rate) {
@@ -277,7 +292,7 @@ sub _eval_cop_rate {
 }
 
 sub _eval_trees_rate {
-    my $nation = $ARGV[0];
+    my $nation = params->{nation};
     my $trees_rate = database->quick_lookup('users', { name => $nation }, 'trees_rate');
     
     given ($trees_rate) {
@@ -290,27 +305,27 @@ sub _eval_trees_rate {
 }
 
 sub _eval_crime_rate {
-    my $nation = $ARGV[0];
+    my $nation = ::params->{nation};
     my $crime_rate = database->quick_lookup('users', { name => $nation }, 'economic_scale');
     
     given ($crime_rate) {
         when ($_ <= 20) { return 'safe'; }
-        when (20 < $_ && $_ <= 40) { return 'low-crime'; }
-        when (40 < $_ && $_ <= 60) { return 'somewhat safe'; }
-        when (60 < $_ && $_ <= 80) { return 'mob-run'; }
+        when (20 < $_ && $_ <= 40) { return 'somewhat safe'; }
+        when (40 < $_ && $_ <= 60) { return 'normal'; }
+        when (60 < $_ && $_ <= 80) { return 'hectic'; }
         when (80 < $_) { return 'dangerous'; }
     }
 }
 
 sub _eval_classification {
-    my $nation = $ARGV[0];
+    my $nation = params->{nation};
     my $classification_id = database->quick_lookup('users', { name => $nation }, 'classification');
     my $classification = database->quick_lookup('users_classification', { id => $classification_id }, 'value');
     return $classification;
 }
 
 sub cache_nation {
-        my $nation = $ARGV[0];
+        my $nation = params->{nation};
         my $motto = database->quick_lookup('users', { name => $nation }, 'motto');
         my $id = database->quick_lookup('users', { name => $nation }, 'id');
         my $flag = database->quick_lookup('users', { name => $nation }, 'flag');
@@ -330,9 +345,8 @@ sub cache_nation {
         my $trees_rate = _eval_trees_rate($nation);
         my $crime_rate = _eval_crime_rate($nation);
         my $last_cache = time();
-        print $classification;
             
         database->quick_insert('users_cache', { id => $id, name => $nation, motto => $motto, flag => $flag, economy => $economy, political_freedoms => $political_freedoms, civil_rights => $civil_rights, economic_scale => $economic_scale, region => $region, population => $population, tax_rate => $tax_rate, un_category => $un_category, un_delegate => $un_delegate, classification => $classification, currency => $currency, animal => $animal, cop_rate => $cop_rate, trees_rate => $trees_rate, crime_rate => $crime_rate, last_cache => $last_cache});
-}    
+}  
     
 true;

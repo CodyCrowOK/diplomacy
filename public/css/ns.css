@@ -3,7 +3,8 @@ body {  margin-left: 0px;
         font-family: Verdana, Tahoma;
     	font-size: 10pt;
 	color: black;
-	background-color: white;
+	background-color: #d2d2ca;
+	
 }
 img {
 	border:0;
@@ -46,9 +47,8 @@ h1 {    font-size: 3.0em;
 	font-family: Impact,Garamond;
 	font-weight: normal;
 }
-h2 {    font-size: 2.5em;
-        font-family: Verdana, sans-serif;
-        font-weight: 900;
+h2 {    font-size: 3em;
+        font-weight: 600;
 }
 h3 {	font-size: 12pt;
 	font-family: Verdana, Tahoma;
@@ -150,6 +150,7 @@ legend {
 
 #main {
 	margin-left:160px;
+	margin-top: 50px;
 }
 
 #panel ul {
@@ -203,6 +204,10 @@ legend {
     border-bottom: 1px dotted gray;
     font-size:85%;
     line-height:100%;
+}
+
+#panel {
+background: #dadad2;
 }
 
 input[type="submit"] {
@@ -273,3 +278,35 @@ table.shiny td {
 	border-bottom: 1px dotted gray;
 }
 
+.nationname {
+    font-family:Georgia,Garamond,'Times New Roman',Times,serif;
+    font-size:28pt;
+    text-shadow: 1px 2px 2px #999;
+    margin:0;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.pretext {
+    display: block;
+    margin-bottom: 20px;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    font-weight: 900;
+}
+
+.center {
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#motto {
+    font-size:1.2em;
+    font-weight: 300;
+    font-style: italic;
+}
+
+.nationbody {
+width: 80%;
+}
