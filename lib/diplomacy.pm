@@ -7,12 +7,17 @@ use Dancer::Plugin::Auth::RBAC::Credentials::PostgreSQL;
 use Template;
 use Math::Random::Secure qw(irand);
 use Dancer::Session;
-no strict 'refs';
+use POSIX; # for ceil()
+no strict 'refs'; 
 
 our $VERSION = '0.1';
 
 get '/' => sub {
+    if ( !defined(session('user_id'))) {
         template 'index';
+    } else {
+        forward '/nation/'.session('nation');
+    }
 };
 
 get '/nation/:nation' => sub {
@@ -106,7 +111,7 @@ get '/logout' => sub {
 
 hook before_template => sub {
        my $tokens = shift;
-       $tokens->{'logged_in_nav'} = '<ul class="menu"><li><a href="/">YOUR NATION</a></li><ul class="menu"><li><a href="/issues">ISSUES</a></li><li><a href="/messages">MESSAGES</a></li><li><a href="/settings">SETTINGS</a></li></ul><li><a href="#">THE WORLD</a></li><li><a href="#">UNITED NATIONS</a></li><li><a href="#">ABOUT</a></li></ul>';
+       $tokens->{'logged_in_nav'} = '<ul class="menu"><li><a href="/">'.session('nation').'</a></li><ul class="menu"><li style="font-variant:small-caps;"><a href="/issues">Issues</a></li><li style="font-variant:small-caps;"><a href="/messages">Messages</a></li><li style="font-variant:small-caps;"><a href="/settings">Settings</a></li><li style="font-variant:small-caps;"><a href="/logout">Logout</a></li></ul><li><a href="#">The World</a></li><li><a href="#">United Nations</a></li><li><a href="#">About</a></li></ul>';
        $tokens->{'logged_out_nav'} = '<ul class="menu"><li><a href="#">HOME</a></li><li><a href="#">THE WORLD</a></li><li><a href="#">UNITED NATIONS</a></li><li><a href="#">ABOUT</a></li></ul>';
        
 };
@@ -324,8 +329,17 @@ sub _eval_classification {
     return $classification;
 }
 
+sub increase_population {
+    my $nation = params->{nation};
+    my $population = database->quick_lookup('users', { name => $nation }, 'population');
+    $population *= 1 + (.01 * irand(10));
+    $population = ceil($population);
+    database->quick_update('users', { name => $nation}, { population => $population });
+}
+
 sub cache_nation {
         my $nation = params->{nation};
+        increase_population($nation);
         my $motto = database->quick_lookup('users', { name => $nation }, 'motto');
         my $id = database->quick_lookup('users', { name => $nation }, 'id');
         my $flag = database->quick_lookup('users', { name => $nation }, 'flag');

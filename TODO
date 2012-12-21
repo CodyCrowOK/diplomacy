@@ -7,4 +7,4 @@ display issues
 create cron or sub to assign issues to each nation
 fix layout sidebar
 fix region cache in &cache_nation
-Modularize all of the subs that are specific to /nation/:nation
+

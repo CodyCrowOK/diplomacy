@@ -10,6 +10,9 @@
 <div id="panel">
 	<a href=""><img src="/images/mars.jpg" alt="Mars" title="Mars"></a>
 	<div style="text-align:center"><img src="/images/hr.gif"></div>
+	<% if session.user_id %>
+	<% logged_in_nav %>
+	<% else %>
 	<% logged_out_nav %>
 	<div class="loginbox">
 	<form action="/login/submit" method="post">
@@ -18,6 +21,7 @@
 		name="password" type="password"><br />
         <input type="submit" value="Login" name="submit"></form>
 	</div>
+	<% end %>
 </div>
 <div id="banner">
 <a href="/"><img src="/images/banner.png" alt="Diplomacy: a Browser Game"></a>
