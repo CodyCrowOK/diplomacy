@@ -1,0 +1,14 @@
+<div style="text-align:left;margin-left:15px">
+<form method="POST" action="/issues/submit"><p><% the_issue %></p>
+<h5>The Debate</h5>
+<ol>
+<li><% response_1 %><br>
+<input type="submit" name="choice-0" value="Accept" /><br><br>
+</li><li><% response_2 %><br>
+<input type="submit" name="choice-1" value="Accept" /><br><br>
+</li><li><% response_3 %><br>
+<input type="submit" name="choice-2" value="Accept" /></li></ol>
+<p>If you wish, you may ignore this issue.
+<input type="submit" name="choice--1" value="Ignore" /></p>
+</form>
+</div>

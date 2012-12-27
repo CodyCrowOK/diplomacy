@@ -1,5 +1,16 @@
 <% if session.user_id %>
-Display issues
+<h2 class="nationname">Issue for <% session.nation %></h2>
+<table class="shiny center" style="margin-top:20px" border="5" cellspacing="10" width="80%">
+    <% IF issue_id %>
+    <tr>
+	<td width="100%" align="center"><strong><a href="/issues/<% issue_id %>"><% issue_title %></a></strong></td>
+    </tr>
+    <% ELSE %>
+    <tr>
+	<td width="100%" align="center"><strong><a href="/issues">No Issues</a></strong></td>
+    </tr>
+    <% END %>
+</table>
 <% else %>
 Display login
 <% end %>

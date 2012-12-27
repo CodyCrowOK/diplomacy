@@ -100,7 +100,40 @@ get '/issues' => sub {
         template 'login';
     }
     else {
-        template 'issues';
+        my $id = session('user_id');
+        my $issue = fetch_issue($id);
+        if (defined($issue)) { my $issues = 1; } else { my $issues = undef; }
+        my $title = $issue->{title};
+        my $issue_id = $issue->{id};
+        
+        template 'issues' => {
+            nation => session('nation'),
+            issue_id => $issue_id,
+            issue_title => $title,
+        };
+    }
+};
+
+get '/issues/:issue_id' => sub {
+    if (not session('user_id')) {
+        template 'login';
+    }
+    elsif (!defined(params->{issue_id})) {
+        return redirect '/issues', 301;
+    }
+    else {
+        if (issue_is_assigned(params->{issue_id})) {
+            my $issue = fetch_issue(params->{issue_id});
+            my @response = split('\n', $issue->{positions});
+            
+            template 'issue' => {
+                the_issue => $issue->{title},
+                response_1 => $response[0],
+                response_2 => $response[1],
+                response_3 => $response[2],
+                randomname => &random_name,
+            };
+        }
     }
 };
 
@@ -111,10 +144,31 @@ get '/logout' => sub {
 
 hook before_template => sub {
        my $tokens = shift;
-       $tokens->{'logged_in_nav'} = '<ul class="menu"><li><a href="/">'.session('nation').'</a></li><ul class="menu"><li style="font-variant:small-caps;"><a href="/issues">Issues</a></li><li style="font-variant:small-caps;"><a href="/messages">Messages</a></li><li style="font-variant:small-caps;"><a href="/settings">Settings</a></li><li style="font-variant:small-caps;"><a href="/logout">Logout</a></li></ul><li><a href="#">The World</a></li><li><a href="#">United Nations</a></li><li><a href="#">About</a></li></ul>';
+       if (defined(session('nation'))) {
+       $tokens->{'logged_in_nav'} = '<ul class="menu"><li><a href="/">'.session('nation').'</a></li><ul class="menu"><li style="font-variant:small-caps;"><a href="/issues">Issues</a></li><li style="font-variant:small-caps;"><a href="/messages">Messages</a></li><li style="font-variant:small-caps;"><a href="/settings">Settings</a></li><li style="font-variant:small-caps;"><a href="/logout">Logout</a></li></ul><li><a href="#">The World</a></li><li><a href="#">United Nations</a></li><li><a href="#">About</a></li></ul>';}
        $tokens->{'logged_out_nav'} = '<ul class="menu"><li><a href="#">HOME</a></li><li><a href="#">THE WORLD</a></li><li><a href="#">UNITED NATIONS</a></li><li><a href="#">ABOUT</a></li></ul>';
        
 };
+
+sub fetch_issue {
+    #return hashref
+    my $user_id = session('user_id');
+    my $issueslist = database->quick_lookup('users_issues', { id => $user_id }, 'issues');
+    my @issues = split(',', $issueslist);
+    my $fetched_issue = database->quick_select('issues', { id => $issues[0] }, { order_by => 'id', limit => 1 });
+    return $fetched_issue;
+}
+
+sub issue_is_assigned {
+    #if user is assigned issue...
+    return 1;
+}
+
+sub random_name {
+    #from list of first names and list of last names, randomly create a name.
+    return "John Random";
+}
+
 
 sub _eval_economy {
     my $nation = params->{nation};
@@ -361,6 +415,6 @@ sub cache_nation {
         my $last_cache = time();
             
         database->quick_insert('users_cache', { id => $id, name => $nation, motto => $motto, flag => $flag, economy => $economy, political_freedoms => $political_freedoms, civil_rights => $civil_rights, economic_scale => $economic_scale, region => $region, population => $population, tax_rate => $tax_rate, un_category => $un_category, un_delegate => $un_delegate, classification => $classification, currency => $currency, animal => $animal, cop_rate => $cop_rate, trees_rate => $trees_rate, crime_rate => $crime_rate, last_cache => $last_cache});
-}  
+}
     
 true;
